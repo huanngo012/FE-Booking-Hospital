@@ -6,6 +6,8 @@ import { store } from './redux/store'
 import './i18n'
 import { CssBaseline, StyledEngineProvider, ThemeProvider } from '@mui/material'
 import { theme } from '~/themes/Theme'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 createRoot(document.getElementById('root')!).render(
   <Provider store={store}>

@@ -240,7 +240,7 @@ export const theme = createTheme({
         fullWidth: true
       },
       styleOverrides: {
-        root: ({ ownerState }) => ({
+        root: () => ({
           '& .MuiOutlinedInput-notchedOutline': {
             borderColor: 'var(--border-color)'
           },
@@ -285,7 +285,7 @@ export const theme = createTheme({
       },
 
       styleOverrides: {
-        root: ({ ownerState }) => ({
+        root: () => ({
           '& .MuiFormHelperText-root': {
             marginLeft: 0,
             marginTop: '6px',
@@ -358,7 +358,7 @@ export const theme = createTheme({
 
     MuiTab: {
       styleOverrides: {
-        root: ({ ownerState }) => ({
+        root: () => ({
           textTransform: 'none',
           color: 'var(--secondary)'
         })
@@ -366,14 +366,14 @@ export const theme = createTheme({
     },
     MuiIconButton: {
       styleOverrides: {
-        root: ({ ownerState }) => ({
+        root: () => ({
           padding: 0
         })
       }
     },
     MuiSnackbar: {
       styleOverrides: {
-        root: ({ owerState }) => ({
+        root: () => ({
           '&.MuiSnackbar-anchorOriginTopRight': {
             left: 'auto'
           }
@@ -382,7 +382,7 @@ export const theme = createTheme({
     },
     MuiAlert: {
       styleOverrides: {
-        root: ({ ownerState }) => ({
+        root: () => ({
           border: '1px solid',
           borderRadius: '8px',
 

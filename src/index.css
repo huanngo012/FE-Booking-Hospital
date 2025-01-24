@@ -45,11 +45,13 @@ body {
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+  line-clamp: 1;
 }
 .truncate_2 {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
+  line-clamp: 2;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
@@ -177,4 +179,19 @@ body {
   align-items: flex-start;
   gap: 24px;
   overflow: auto;
+}
+
+.MuiDivider-root.MuiDivider-fullWidth {
+  border-bottom: 1px solid var(--border-color);
+  width: 100%;
+  margin: 16px 0;
+}
+
+.MuiDivider-root.MuiDivider-vertical {
+  width: 1px;
+}
+
+.MuiPagination-root {
+  display: flex;
+  justify-content: center;
 }

@@ -7,7 +7,7 @@ import { images } from '~/assets'
 
 const LanguagePopUp = () => {
   const { FlagEnIcon, FlagVnIcon } = images
-  const { t, i18n } = useTranslation()
+  const { i18n } = useTranslation()
   const currentLanguage = i18n.language
   const languages = [
     {
@@ -46,37 +46,13 @@ const LanguagePopUp = () => {
     }
   }, [])
   return (
-    <Badge
-      sx={{
-        cursor: 'pointer',
-        display: 'flex',
-        justifyContent: 'center'
-      }}
-      ref={anchorRefLanguage}
-      onClick={handleToggleLanguage}
-    >
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          padding: '8px',
-          border: '1px solid transparent',
-          '&:hover': {
-            border: '1px solid var(--border-color)',
-            borderRadius: '8px'
-          }
-        }}
-      >
-        {currentLanguage == 'vi' ? <FlagVnIcon className='flag-icon' /> : <FlagEnIcon className='flag-icon' />}
+    <Badge sx={{ cursor: 'pointer' }} ref={anchorRefLanguage} onClick={handleToggleLanguage}>
+      <Box className='language-icon'>
+        {currentLanguage == 'vi' ? languages[1].icon : languages[0].icon}
         <PiCaretDown size={16} />
       </Box>
 
-      <Popper
-        open={openLanguage}
-        anchorEl={anchorRefLanguage.current}
-        id='popup-language'
-        sx={{ left: '-40px !important', zIndex: '1000' }}
-      >
+      <Popper open={openLanguage} anchorEl={anchorRefLanguage.current} sx={{ left: '-40px !important', zIndex: '1000' }}>
         <ClickAwayListener onClickAway={handleCloseLanguage}>
           <Paper
             sx={{
@@ -92,7 +68,6 @@ const LanguagePopUp = () => {
                 flexDirection: 'column',
                 gap: '4px'
               }}
-              id='menu-list-grow'
             >
               {languages.map((el, index) => (
                 <MenuItem
@@ -105,10 +80,7 @@ const LanguagePopUp = () => {
                 >
                   <Stack direction='row' alignItems='center' justifyContent='flex-start' width='100%' gap='4px'>
                     {el.icon}
-                    <Typography
-                      variant={currentLanguage === el?.lng ? 'label2' : 'body2'}
-                      color={'var(--text-primary)'}
-                    >
+                    <Typography variant={currentLanguage === el?.lng ? 'label2' : 'body2'} color={'var(--text-primary)'}>
                       {el.title}
                     </Typography>
                   </Stack>

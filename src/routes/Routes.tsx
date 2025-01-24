@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
 import { Navigate, Outlet } from 'react-router-dom'
 import { AboutPage, DoctorPage, HomePage, HospitalPage, LoginPage, NewsPage, NotFoundPage, UserPage } from '~/pages'
+import HospitalDetailPage from '~/pages/detail-hospital/HospitalDetailPage'
 import { paths } from '~/utils/constant'
 
 const privateRoutes = [
@@ -29,11 +30,11 @@ const publicRoutes = [
     component: DoctorPage,
     layout: true
   },
-  // {
-  //   path: paths.HOSPITAL_DETAIL,
-  //   component: HospitalDetailPage,
-  //   layout: true,
-  // },
+  {
+    path: paths.HOSPITAL_DETAIL,
+    component: HospitalDetailPage,
+    layout: true
+  },
   {
     path: paths.NEWS,
     component: NewsPage,

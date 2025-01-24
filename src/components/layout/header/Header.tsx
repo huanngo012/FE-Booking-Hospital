@@ -3,12 +3,16 @@ import { useTranslation } from 'react-i18next'
 import { Fragment, useEffect, useState } from 'react'
 import { paddingScreen, paths } from '~/utils/constant'
 import { images } from '~/assets'
-import { Box, Button, Link, Stack, Typography, useMediaQuery } from '@mui/material'
+import { Box, Button, Link, Stack, Tab, Tabs, Typography, useMediaQuery } from '@mui/material'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { theme } from '~/themes/Theme'
-import { useSelector } from 'react-redux'
+import LanguagePopUp from './LanguagePopUp'
+import ProfilePopup from './ProfilePopup'
+import NavbarPopUp from './NavbarPopUp'
 
 const { FacebookIcon, TiktokIcon, YoutubeIcon, PhoneIcon, UserIcon } = images
+const linkLogo = 'https://medpro.vn/_next/image?url=https%3A%2F%2Fbo-api.medpro.com.vn%2Fstatic%2Fimages%2Fmedpro%2Fweb%2Fheader_logo.svg&w=1920&q=75'
+const linkImage = 'https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fhp.a16c51cc.svg&w=1920&q=75'
 
 const Header = () => {
   const { t } = useTranslation()
@@ -108,32 +112,14 @@ const Header = () => {
   return (
     <Box className='header__sticky' sx={paddingScreen}>
       <Box className='header__container'>
-        <Box
-          onClick={() => navigate(paths.HOME)}
-          width='150px'
-          component='img'
-          src='https://medpro.vn/_next/image?url=https%3A%2F%2Fbo-api.medpro.com.vn%2Fstatic%2Fimages%2Fmedpro%2Fweb%2Fheader_logo.svg&w=1920&q=75'
-          alt=''
-          sx={{ cursor: 'pointer' }}
-        />
+        <Box className='logo' onClick={() => navigate(paths.HOME)} width='150px' component='img' src={linkLogo} alt='' />
         <Box className='header__menu'>
-          <Box
-            display={displayDesktop}
-            className={direction === 'down' ? 'header__menu-top-without-network' : 'header__menu-top'}
-          >
-            <Stack flexDirection='row' alignItems='center'>
+          <Box display={displayDesktop} className={direction === 'down' ? 'header__menu-top-without-network' : 'header__menu-top'}>
+            <Box className='list-networks'>
               {network.map((el, index) => (
                 <Fragment key={index}>
-                  <Box sx={{ padding: '0 12px', position: 'relative' }}>
-                    <Link
-                      href={el.link}
-                      sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '4px'
-                      }}
-                      target='_blank'
-                    >
+                  <Box className='item'>
+                    <Link className='link' href={el.link} target='_blank'>
                       {el.icon}
                       <Typography variant='label2' color='#003553'>
                         {el.name}
@@ -143,24 +129,44 @@ const Header = () => {
                   {index !== network.length - 1 && '|'}
                 </Fragment>
               ))}
-            </Stack>
-            <Stack flexDirection='row' alignItems='center' gap='15px' height='55px' position='relative'>
-              <Button
-                variant='contained'
-                sx={{
-                  display: 'flex',
-                  gap: '4px',
-                  background: '#ffb54a',
-                  borderRadius: '30px',
-                  ':hover': {
-                    background: '#df8e1c'
-                  }
-                }}
-                onClick={() => handleScroll('downloadSection')}
-              >
+            </Box>
+            <Box className='list-actions'>
+              <Button className='dowload-button' variant='contained' onClick={() => handleScroll('downloadSection')}>
                 <PhoneIcon />
                 <Typography variant='button2'>{t('download app')}</Typography>
               </Button>
+              {!isLoggedIn ? (
+                <Button className='login-button' variant='outlined' color='primary' onClick={() => navigate(paths.LOGIN)}>
+                  <UserIcon />
+                  <Typography variant='button2'>{t('user.account')}</Typography>
+                </Button>
+              ) : (
+                <ProfilePopup />
+              )}
+              <LanguagePopUp />
+            </Box>
+          </Box>
+
+          <Box className='header__menu-bottom'>
+            <Stack className='item-left' display={displayDesktop}>
+              <Box component='img' src={linkImage} alt='' />
+              <Stack flexDirection='column' display={displayDesktop}>
+                <Typography variant='label2'>{t('schedule.appointment assistance')}</Typography>
+                <Typography variant='h5' color='#ffb54a'>
+                  1900 2115
+                </Typography>
+              </Stack>
+            </Stack>
+            <Stack className='item-right' display={displayDesktop}>
+              <Tabs value={tab} onChange={handleChangeTab} defaultValue={tab}>
+                {menu?.map((item, index) => <Tab key={index} value={item?.path} label={<Typography variant='label2'>{item?.title}</Typography>} />)}
+              </Tabs>
+            </Stack>
+            <Stack className='item-right' display={displayMobile}>
+              <LanguagePopUp />
+              {isLoggedIn && <ProfilePopup />}
+
+              <NavbarPopUp tabs={menu} handleNav={handleChangeTab} activeLink={tab} />
             </Stack>
           </Box>
         </Box>
