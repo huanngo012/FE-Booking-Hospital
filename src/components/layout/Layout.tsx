@@ -7,6 +7,9 @@ import Header from '~/components/layout/header/Header'
 import Footer from '~/components/layout/footer/Footer'
 import { theme } from '~/themes/Theme'
 import { images } from '~/assets'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch } from '~/redux/store'
+import { getPatients } from '~/redux/reducer/Patient'
 
 const { SrollUpIcon } = images
 
@@ -35,6 +38,14 @@ const Layout = ({ children }: { children: ReactNode }) => {
   useLayoutEffect(() => {
     window.scrollTo(0, 0)
   }, [location.pathname])
+
+  const dispatch = useDispatch<AppDispatch>()
+  const { isLoggedIn } = useSelector((state: any) => state.auth)
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(getPatients({}))
+    }
+  }, [])
 
   return (
     <Box className='body-content-wrapper'>

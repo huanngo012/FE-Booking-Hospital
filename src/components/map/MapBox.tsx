@@ -13,16 +13,14 @@ const MapBox = ({ address }: { address?: string }) => {
   const [addressMarker, setAddressMarker] = useState<any>(null)
   useEffect(() => {
     axios
-      .get(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?access_token=pk.eyJ1IjoiaHVhbm5nbzEyMCIsImEiOiJjbHFhbjdvem8xeGt1MmxydzBsZzBqdTRxIn0.4rtZQfYSLpyMRMf7m7Swtg`
-      )
+      .get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?access_token=pk.eyJ1IjoiaHVhbm5nbzEyMCIsImEiOiJjbTZ2b3lhaG0wOHowMmxxdnFyaDF5YThlIn0.lQDjdkiMcZkdX57PlUDlQw`)
       .then(function (response) {
         setAddressMarker({
           long: response.data.features[0].center[0],
           lat: response.data.features[0].center[1]
         })
       })
-      .catch(function (error) {})
+      .catch(function (_error) {})
   }, [address])
 
   useEffect(() => {
@@ -38,46 +36,39 @@ const MapBox = ({ address }: { address?: string }) => {
     window.open('https://maps.google.com?q=' + lat + ',' + long)
   }
 
-  // return (
-  //   <Stack flexDirection='column' height='100%' gap='24px'>
-  //     <Map
-  //       ref={mapRef}
-  //       initialViewState={{
-  //         longitude: 106.631423,
-  //         latitude: 10.855893,
-  //         zoom: 16
-  //       }}
-  //       mapboxAccessToken={`pk.eyJ1IjoiaHVhbm5nbzEyMCIsImEiOiJjbHFhbjdvem8xeGt1MmxydzBsZzBqdTRxIn0.4rtZQfYSLpyMRMf7m7Swtg`}
-  //       mapStyle='mapbox://styles/mapbox/outdoors-v12'
-  //       style={{
-  //         height: '500px',
-  //         width: '100%'
-  //       }}
-  //     >
-  //       {addressMarker && (
-  //         <Markers
-  //           long={addressMarker?.long}
-  //           lat={addressMarker?.lat}
-  //           icon={<LocationIcon color='red' width='40px' height='40px' />}
-  //         />
-  //       )}
-  //     </Map>
-  //     <Button
-  //       variant='contained'
-  //       color='primary'
-  //       sx={{
-  //         display: 'flex',
-  //         gap: '4px',
-  //         borderRadius: '30px',
-  //         width: '100%'
-  //       }}
-  //       onClick={() => showInMapClicked(addressMarker.long, addressMarker.lat)}
-  //     >
-  //       <Typography variant='label1'>{t('healthcare facilities.view map')}</Typography>
-  //     </Button>
-  //   </Stack>
-  // )
-  return <></>
+  return (
+    <Stack flexDirection='column' height='100%' gap='24px'>
+      <Map
+        ref={mapRef}
+        initialViewState={{
+          longitude: 106.631423,
+          latitude: 10.855893,
+          zoom: 16
+        }}
+        mapboxAccessToken={`pk.eyJ1IjoiaHVhbm5nbzEyMCIsImEiOiJjbTZ2b3lhaG0wOHowMmxxdnFyaDF5YThlIn0.lQDjdkiMcZkdX57PlUDlQw`}
+        mapStyle='mapbox://styles/mapbox/outdoors-v12'
+        style={{
+          height: '500px',
+          width: '100%'
+        }}
+      >
+        {addressMarker && <Markers long={addressMarker?.long} lat={addressMarker?.lat} icon={<LocationIcon color='red' width='40px' height='40px' />} />}
+      </Map>
+      <Button
+        variant='contained'
+        color='primary'
+        sx={{
+          display: 'flex',
+          gap: '4px',
+          borderRadius: '30px',
+          width: '100%'
+        }}
+        onClick={() => showInMapClicked(addressMarker.long, addressMarker.lat)}
+      >
+        <Typography variant='label1'>{t('healthcare facilities.view map')}</Typography>
+      </Button>
+    </Stack>
+  )
 }
 
 export default MapBox

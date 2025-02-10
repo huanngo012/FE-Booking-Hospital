@@ -1,0 +1,301 @@
+.login-wrapper {
+  width: 100%;
+  height: 100vh;
+  .login-container {
+    background-image: url('https://image.slidesdocs.com/responsive-images/background/health-white-fashion-medical-hexagon-hospital-powerpoint-background_33a484e0f8__960_540.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    .form {
+      position: relative;
+      display: flex;
+      align-items: center;
+      background-color: white;
+      border-radius: 16px;
+      padding: 30px;
+      .icon-back {
+        position: absolute;
+        left: 15px;
+        top: 15px;
+        color: var(--primary);
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        animation-name: animate;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+      }
+    }
+  }
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+  width: 100%;
+  .title {
+    width: 100%;
+    text-align: center;
+  }
+  .icon {
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 6px;
+  }
+  .content-wrapper {
+    width: 100%;
+    .content-top {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 32px;
+      .form-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        width: 100%;
+        .form-field {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          gap: 8px;
+          .form-label {
+            display: flex;
+            gap: 4px;
+            align-items: flex-end;
+          }
+        }
+        .form-field-forgot-password {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 8px;
+          width: 100%;
+          .form-field-checkbox {
+            display: flex;
+            gap: 8px;
+          }
+        }
+      }
+      .button-login {
+        width: 100%;
+        background: var(--primary);
+      }
+    }
+    .content-bottom {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      gap: 8px;
+      margin: 16px 0;
+      a {
+        color: var(--blue-300);
+        cursor: pointer;
+        text-decoration: underline !important;
+      }
+    }
+  }
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+  width: 100%;
+  .title {
+    width: 100%;
+    text-align: center;
+  }
+  .icon {
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 6px;
+  }
+  .content-wrapper {
+    width: 100%;
+    .content-top {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 32px;
+      .form-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        width: 100%;
+        .form-field {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          gap: 8px;
+          .form-label {
+            display: flex;
+            gap: 4px;
+            align-items: flex-end;
+          }
+        }
+        .form-field-forgot-password {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 8px;
+          width: 100%;
+          .form-field-checkbox {
+            display: flex;
+            gap: 8px;
+          }
+        }
+      }
+      .button-register {
+        width: 100%;
+        background: var(--primary);
+      }
+    }
+    .content-bottom {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      gap: 8px;
+      margin: 16px 0;
+      a {
+        color: var(--blue-300);
+        cursor: pointer;
+        text-decoration: underline !important;
+      }
+    }
+  }
+}
+
+.forget-password-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+  width: 100%;
+  .title-des {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 8px;
+      .form-label {
+        display: flex;
+        gap: 4px;
+        align-items: flex-end;
+      }
+    }
+  }
+}
+
+.verification-form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+  .title-des {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .content-top {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 8px;
+      .form-label {
+        display: flex;
+        gap: 4px;
+        align-items: flex-end;
+      }
+    }
+  }
+  .verification-button {
+    height: 48px;
+    padding: 0 20px;
+    width: 100%;
+  }
+  .content-bottom {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+  }
+}
+
+.reset-password-form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+  .title-des {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .icon {
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 6px;
+  }
+  .content-top {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 8px;
+      .form-label {
+        display: flex;
+        gap: 4px;
+        align-items: flex-end;
+      }
+    }
+  }
+}
+@keyframes animate {
+  0% {
+    transform: translateX(18px);
+  }
+  50% {
+    transform: translateX(15px);
+  }
+  100% {
+    transform: translateX(18px);
+  }
+}

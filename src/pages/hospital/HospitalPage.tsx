@@ -95,6 +95,17 @@ const HospitalPage = () => {
   }, [debounceSearchLabel, debounceSearchProvince, categoryID])
 
   useEffect(() => {
+    dispatch(
+      getClinics({
+        limit: pageSizeDefault,
+        page: page,
+        name: searchLabel,
+        'address.province': province
+      })
+    )
+  }, [page])
+
+  useEffect(() => {
     setClinicsSearch(clinics)
   }, [clinics])
 

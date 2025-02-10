@@ -3,22 +3,138 @@ import { paddingScreen } from '~/utils/constant'
 import { Box, Stack, Typography, useMediaQuery } from '@mui/material'
 import { theme } from '~/themes/Theme'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   const { t } = useTranslation()
   const isDesktop = useMediaQuery(theme.breakpoints.up('desktop'))
   const flexDirectionFooter = isDesktop ? 'row' : 'column'
+
+  const link_menu: any = [
+    {
+      title: t('medical services.medical services'),
+      link: '/',
+      sub_menu: [
+        {
+          sub_title: t('medical services.make appointment at facility'),
+          sub_link: '/'
+        },
+        {
+          sub_title: t('medical services.make an appointment with a doctor'),
+          sub_link: '/'
+        },
+        {
+          sub_title: t('medical services.remote medical consultation'),
+          sub_link: '/'
+        },
+        {
+          sub_title: t('medical services.schedule a medical test'),
+          sub_link: '/'
+        },
+        {
+          sub_title: t('medical services.home health care'),
+          sub_link: '/'
+        },
+        {
+          sub_title: t('medical services.pay hospital fees'),
+          sub_link: '/'
+        }
+      ]
+    },
+    {
+      title: t('healthcare facilities.healthcare facilities'),
+      link: '/',
+      sub_menu: [
+        {
+          sub_title: t('healthcare facilities.public hospital'),
+          sub_link: '/'
+        },
+        {
+          sub_title: t('healthcare facilities.private hospital'),
+          sub_link: '/'
+        },
+        {
+          sub_title: t('healthcare facilities.medical clinic'),
+          sub_link: '/'
+        },
+        {
+          sub_title: t('healthcare facilities.consultation room'),
+          sub_link: '/'
+        },
+        {
+          sub_title: t('healthcare facilities.medical test'),
+          sub_link: '/'
+        }
+      ]
+    },
+    {
+      title: t('guidelines.guidelines'),
+      link: '/',
+      sub_menu: [
+        {
+          sub_title: t('guidelines.app installation'),
+          sub_link: '/'
+        },
+        {
+          sub_title: t('guidelines.schedule an appointment'),
+          sub_link: '/'
+        },
+        {
+          sub_title: t('guidelines.refund process'),
+          sub_link: '/'
+        },
+        {
+          sub_title: t('guidelines.frequently asked questions'),
+          sub_link: '/'
+        }
+      ]
+    },
+    {
+      title: t('news.news'),
+      link: '/',
+      sub_menu: [
+        {
+          sub_title: t('news.service news'),
+          sub_link: '/'
+        },
+        {
+          sub_title: t('news.medical news'),
+          sub_link: '/'
+        },
+        {
+          sub_title: t('news.general medicine'),
+          sub_link: '/'
+        }
+      ]
+    },
+    {
+      title: t('about-page.about-us'),
+      link: '/',
+      sub_menu: [
+        {
+          sub_title: t('about-page.introduction'),
+          sub_link: '/'
+        },
+        {
+          sub_title: t('about-page.terms of service'),
+          sub_link: '/'
+        },
+        {
+          sub_title: t('about-page.privacy policy'),
+          sub_link: '/'
+        },
+        {
+          sub_title: t('about-page.usage regulations'),
+          sub_link: '/'
+        }
+      ]
+    }
+  ]
   return (
     <Box className='footer__sticky' sx={paddingScreen}>
       <Box className='footer__container' flexDirection={flexDirectionFooter}>
         <Stack flexDirection='column' gap='10px'>
-          <Box
-            width='220px'
-            component='img'
-            src='https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.d646d4b8.svg&w=1920&q=75'
-            alt=''
-            marginBottom='10px'
-          />
+          <Box width='220px' component='img' src='https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.d646d4b8.svg&w=1920&q=75' alt='' marginBottom='10px' />
 
           <Typography variant='label2' minWidth='60px'>
             {t('user.address')}:{' '}
@@ -45,58 +161,24 @@ const Footer = () => {
             </Typography>
           </Typography>
         </Stack>
-        <Stack flexWrap='wrap' flexDirection='row' width='100%' rowGap='16px'>
-          <Stack flexDirection='column' maxWidth='33.3333%' flex='33.3333%'>
-            <Typography variant='label2'>{t('medical services.medical services')} </Typography>
-            <Typography variant='body2'>{t('medical services.make appointment at facility')}</Typography>
-            <Typography variant='body2'>{t('medical services.make an appointment with a doctor')}</Typography>
-            <Typography variant='body2'>{t('medical services.remote medical consultation')}</Typography>
-            <Typography variant='body2'> {t('medical services.schedule a medical test')}</Typography>
-            <Typography variant='body2'>{t('medical services.home health care')}</Typography>
-            <Typography variant='body2'>{t('medical services.pay hospital fees')}</Typography>
-          </Stack>
-          <Stack flexDirection='column' maxWidth='33.3333%' flex='33.3333%'>
-            <Typography variant='label2'>{t('healthcare facilities.healthcare facilities')} </Typography>
-            <Typography variant='body2'>{t('healthcare facilities.public hospital')}</Typography>
-            <Typography variant='body2'>{t('healthcare facilities.private hospital')}</Typography>
-            <Typography variant='body2'>{t('healthcare facilities.medical clinic')}</Typography>
-            <Typography variant='body2'>{t('healthcare facilities.consultation room')}</Typography>
-            <Typography variant='body2'>{t('healthcare facilities.medical test')}</Typography>
-          </Stack>
-          <Stack flexDirection='column' maxWidth='33.3333%' flex='33.3333%'>
-            <Typography variant='label2'>{t('guidelines.guidelines')} </Typography>
-            <Typography variant='body2'>{t('guidelines.app installation')}</Typography>
-            <Typography variant='body2'>{t('guidelines.schedule an appointment')}</Typography>
-            <Typography variant='body2'>{t('guidelines.refund process')}</Typography>
-            <Typography variant='body2'>{t('guidelines.frequently asked questions')}</Typography>
-          </Stack>
-          <Stack flexDirection='column' maxWidth='33.3333%' flex='33.3333%'>
-            <Typography variant='label2'>{t('news.news')} </Typography>
-            <Typography variant='body2'>{t('news.service news')}</Typography>
-            <Typography variant='body2'>{t('news.medical news')}</Typography>
-            <Typography variant='body2'>{t('news.general medicine')}</Typography>
-          </Stack>
-          <Stack flexDirection='column' maxWidth='33.3333%' flex='33.3333%'>
-            <Typography variant='label2'>{t('about-page.about-us')}</Typography>
-            <Typography variant='body2'>{t('about-page.introduction')}</Typography>
-            <Typography variant='body2'>{t('about-page.terms of service')}</Typography>
-            <Typography variant='body2'>{t('about-page.privacy policy')}</Typography>
-            <Typography variant='body2'>{t('about-page.usage regulations')}</Typography>
-          </Stack>
-          <Stack flexDirection='column' maxWidth='33.3333%' flex='33.3333%'>
+        <Stack flexWrap='wrap' flexDirection='row' width='100%' rowGap='24px'>
+          {link_menu.map((item: any, index: any) => (
+            <Stack key={index} flexDirection='column' maxWidth='33.3333%' flex='33.3333%' gap='6px'>
+              <Link to={item.href}>
+                <Typography variant='label2'>{item.title} </Typography>
+              </Link>
+              {item.sub_menu.map((sub_item: any, index_sub: any) => (
+                <Link key={index_sub} to={sub_item.sub_link}>
+                  <Typography variant='body2'>{sub_item.sub_title}</Typography>
+                </Link>
+              ))}
+            </Stack>
+          ))}
+
+          <Stack flexDirection='column' maxWidth='33.3333%' flex='33.3333%' gap='6px'>
             <Stack flexDirection='row' flexWrap='wrap' width='100%' gap='13px 16px'>
-              <Box
-                width='100px'
-                component='img'
-                src='https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdadangky.a0a8489c.png&w=1920&q=75'
-                alt=''
-              />
-              <Box
-                width='100px'
-                component='img'
-                src='https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbocongthuong.53714ee6.png&w=1920&q=75'
-                alt=''
-              />
+              <Box width='100px' component='img' src='https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdadangky.a0a8489c.png&w=1920&q=75' alt='' />
+              <Box width='100px' component='img' src='https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbocongthuong.53714ee6.png&w=1920&q=75' alt='' />
               <Box
                 width='100px'
                 component='img'

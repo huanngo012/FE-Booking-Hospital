@@ -1,24 +1,24 @@
 import './style.scss'
-import { Box, Breadcrumbs, Button, Divider, Stack, Typography, useMediaQuery } from '@mui/material'
+import { Box, Button, Divider, Stack, Typography, useMediaQuery } from '@mui/material'
 import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { PiClock } from 'react-icons/pi'
+import { CiLocationOn } from 'react-icons/ci'
 import Slider, { Settings } from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+
 import { theme } from '~/themes/Theme'
-
-import { Link, useNavigate, useParams } from 'react-router-dom'
-
 import * as apis from '~/apis'
 import { paddingScreen, paths } from '~/utils/constant'
-
-import { useDispatch, useSelector } from 'react-redux'
 import useNotification from '~/hooks/useNotification'
 import { resetClinicStatus } from '~/redux/reducer/Clinic'
 import { AppDispatch } from '~/redux/store'
 
-import { Comment, Loading, MapBox } from '~/components'
-import { useTranslation } from 'react-i18next'
+import { BreadscrumbCustom, Comment, DoctorBody, Loading, MapBox } from '~/components'
+import PopupCreateComment from '~/components/comment/PopupCreateComment'
 
 const HospitalDetailPage = () => {
   const { t } = useTranslation()
@@ -32,12 +32,7 @@ const HospitalDetailPage = () => {
   const widthLeft = isDesktop ? '30%' : '100%'
   const widthRight = isDesktop ? '70%' : '100%'
 
-  const [activeLink, setActiveLink] = useState<string | null>(null)
   const [payload, setPayload] = useState<any>({})
-
-  const handleLinkClick = (linkText: string) => {
-    setActiveLink(linkText)
-  }
 
   const [clinic, setClinic] = useState<any>(null)
 
@@ -74,60 +69,33 @@ const HospitalDetailPage = () => {
     }
   }, [successAction, errorAction])
 
+  const linksBreadcrums = [
+    {
+      title: t('home.home'),
+      link: '/',
+      activeLink: false
+    },
+    {
+      title: t('hospital.hospital'),
+      link: paths.HOSPITALS,
+      activeLink: false
+    },
+    {
+      title: clinic?.name,
+      link: '',
+      activeLink: true
+    }
+  ]
+
   return (
     <>
       {clinic ? (
         <Stack alignItems='center' className='hospital__wrapper' sx={paddingScreen}>
           <Stack flexDirection='column' gap='24px' maxWidth='var(--max-width)' width='100%'>
-            <Box role='presentation' paddingTop='20px'>
-              <Breadcrumbs aria-label='breadcrumb'>
-                <Link
-                  to='/'
-                  style={{
-                    textDecoration: 'none',
-                    color: activeLink === 'Trang chủ' ? 'var(--primary)' : 'var(--text-primary)'
-                  }}
-                  onClick={() => handleLinkClick('Trang chủ')}
-                >
-                  <Typography variant='label2' color='var(---secondary)'>
-                    {t('home.home')}
-                  </Typography>
-                </Link>
-                <Link
-                  to={paths.HOSPITALS}
-                  style={{
-                    textDecoration: 'none',
-                    color: activeLink === 'Bệnh viện' ? 'var(--primary)' : 'var(--text-primary)'
-                  }}
-                  onClick={() => handleLinkClick('Bệnh viện')}
-                >
-                  <Typography variant='label2' color='var(---secondary)'>
-                    {t('hospital.hospital')}
-                  </Typography>
-                </Link>
-                <Link
-                  to=''
-                  style={{
-                    textDecoration: 'none',
-                    color: 'var(--primary)'
-                  }}
-                >
-                  <Typography variant='button2'>{clinic?.name}</Typography>
-                </Link>
-              </Breadcrumbs>
-            </Box>
+            {<BreadscrumbCustom data={linksBreadcrums} />}
             <Stack flexDirection='row' flexWrap='wrap' rowGap='24px'>
               <Stack flex={widthLeft} maxWidth={widthLeft} padding='0 10px' maxHeight='500px'>
-                <Stack
-                  flexDirection='column'
-                  alignItems='center'
-                  justifyContent='space-around'
-                  borderRadius='16px'
-                  sx={{ backgroundColor: 'var(--white)' }}
-                  padding='35px'
-                  gap='16px'
-                  height='100%'
-                >
+                <Stack flexDirection='column' alignItems='center' justifyContent='space-around' borderRadius='16px' sx={{ backgroundColor: 'var(--white)' }} padding='35px' gap='16px' height='100%'>
                   <Stack flexDirection='column' alignItems='center' gap='8px'>
                     <Box component='img' src={clinic?.logo} alt='' width='150px' />
                     <Typography variant='label1' color='var(--primary)'>
@@ -142,23 +110,11 @@ const HospitalDetailPage = () => {
                     }}
                   />
                   <Stack flexDirection='column' alignItems='flex-start' gap='16px'>
-                    <Typography
-                      variant='body2'
-                      display='flex'
-                      alignItems='center'
-                      gap='4px'
-                      color='var(--text-primary)'
-                    >
-                      {/* <CiLocationOn color='#df8e1c' size={32} /> */}
+                    <Typography variant='body2' display='flex' alignItems='center' gap='4px' color='var(--text-primary)'>
+                      <CiLocationOn color='#df8e1c' size={32} />
                       {addressClinic}
                     </Typography>
-                    <Typography
-                      variant='body2'
-                      display='flex'
-                      alignItems='center'
-                      gap='4px'
-                      color='var(--text-primary)'
-                    >
+                    <Typography variant='body2' display='flex' alignItems='center' gap='4px' color='var(--text-primary)'>
                       <PiClock color='#df8e1c' size='20px' />
                       Thứ 2 - Thứ 6 (06:00- 16:30); Thứ 7 (06:00-11:30)
                     </Typography>
@@ -188,26 +144,12 @@ const HospitalDetailPage = () => {
                 </Slider>
               </Stack>
               <Stack flex={widthLeft} maxWidth={widthLeft} padding='0 10px' gap='24px'>
-                <Stack
-                  flexDirection='column'
-                  alignItems='center'
-                  justifyContent='space-around'
-                  borderRadius='16px'
-                  sx={{ backgroundColor: 'var(--white)' }}
-                  padding='35px'
-                  gap='24px'
-                >
+                <Stack flexDirection='column' alignItems='center' justifyContent='space-around' borderRadius='16px' sx={{ backgroundColor: 'var(--white)' }} padding='35px' gap='24px'>
                   <Stack flexDirection='column' alignItems='flex-start' gap='16px'>
                     <Typography variant='h6' display='flex' alignItems='center' gap='4px' color='var(--text-primary)'>
                       Mô tả
                     </Typography>
-                    <Typography
-                      variant='body2'
-                      display='flex'
-                      alignItems='center'
-                      gap='4px'
-                      color='var(--text-primary)'
-                    >
+                    <Typography variant='body2' display='flex' alignItems='center' gap='4px' color='var(--text-primary)'>
                       {clinic?.description}
                     </Typography>
                   </Stack>
@@ -215,15 +157,10 @@ const HospitalDetailPage = () => {
                 <MapBox address={addressClinic} />
               </Stack>
               <Stack flex={widthRight} maxWidth={widthRight} padding='0 10px'>
-                {/* <DoctorBody clinicSearch={clinic} /> */}
+                <DoctorBody clinicSearch={clinic} inHospitalPage={true} />
               </Stack>
             </Stack>
-            <Comment
-              ratings={clinic?.ratings}
-              totalRatings={clinic?.totalRatings}
-              clinicID={clinic?._id}
-              // popUpComment={<PopupCreateComment payload={payload} setPayload={setPayload} />}
-            />
+            <Comment ratings={clinic?.ratings} totalRatings={clinic?.totalRatings} clinicID={clinic?._id} popUpComment={<PopupCreateComment payload={payload} setPayload={setPayload} />} />
           </Stack>
         </Stack>
       ) : (

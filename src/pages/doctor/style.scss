@@ -1,0 +1,44 @@
+.doctor__wrapper {
+  padding-bottom: 30px;
+  .doctor__header {
+    background-image: url('https://cdn-pkh.longvan.net/prod-partner/9cef9b69-60d6-4456-8c41-888198b7a81a-dna-genetic-biotechnology-science-with-scientist-rsquo-s-hands-disruptive-technology-remix_1.png');
+    background-color: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    .doctor__header-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 48px;
+      .content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        background-color: hsla(0, 0%, 100%, 0.85);
+        padding: 30px;
+        border-radius: 30px;
+        .text-title {
+          position: relative;
+          overflow: hidden;
+        }
+        .text-title::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          background-color: hsla(0, 0%, 100%, 0.55);
+          // border-left: 2px solid black;
+          animation: typing 6s steps(12) infinite;
+        }
+      }
+    }
+  }
+}

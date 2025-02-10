@@ -4,21 +4,22 @@ import { useTranslation } from 'react-i18next'
 import { theme } from '~/themes/Theme'
 import moment from 'moment'
 import { renderStartFromNumber } from '~/utils/helper'
+import ActionMenu from '../action-menu/ActionMenu'
+import PopupEditComment from './PopupEditComment'
+import PopupDeleteComment from './PopupDeleteComment'
 
 const CommentCard = ({ data }: { data?: any }) => {
   const { t } = useTranslation()
   const isTablet = useMediaQuery(theme.breakpoints.up('tablet'))
+
+  const { current } = useSelector((state: any) => state.auth)
 
   return (
     <Stack flexDirection='row' gap='16px'>
       <Box width='35px'>
         <Box
           component='img'
-          src={
-            data?.postedBy?.avatar
-              ? data?.postedBy?.avatar
-              : 'https://medpro.vn/_next/image?url=https%3A%2F%2Fbo-api.medpro.com.vn%2Fstatic%2Fimages%2Fumc2%2Fweb%2Flogo.png&w=1920&q=75'
-          }
+          src={data?.postedBy?.avatar ? data?.postedBy?.avatar : 'https://medpro.vn/_next/image?url=https%3A%2F%2Fbo-api.medpro.com.vn%2Fstatic%2Fimages%2Fumc2%2Fweb%2Flogo.png&w=1920&q=75'}
           alt='avatar'
           width='35px'
           height='35px'
@@ -67,7 +68,7 @@ const CommentCard = ({ data }: { data?: any }) => {
               </Typography>
             </Stack>
           </Stack>
-          {/* {data?.postedBy?._id === current?._id && (
+          {data?.postedBy?._id === current?._id && (
             <Box minWidth='30px'>
               <ActionMenu
                 actionList={
@@ -78,7 +79,7 @@ const CommentCard = ({ data }: { data?: any }) => {
                 }
               />
             </Box>
-          )} */}
+          )}
         </Stack>
       </Stack>
     </Stack>

@@ -1,10 +1,9 @@
 import './style.scss'
-import { Box, Breadcrumbs, Stack, Typography, useMediaQuery } from '@mui/material'
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Box, Stack, Typography, useMediaQuery } from '@mui/material'
 import Slider, { Settings } from 'react-slick'
 import { useTranslation } from 'react-i18next'
 import { theme } from '~/themes/Theme'
+import { BreadscrumbCustom } from '~/components'
 
 const AboutPage = () => {
   const { t } = useTranslation()
@@ -19,10 +18,18 @@ const AboutPage = () => {
     autoplaySpeed: 5000
   }
 
-  const [activeLink, setActiveLink] = useState<string | null>(null)
-  const handleLinkClick = (linkText: string) => {
-    setActiveLink(linkText)
-  }
+  const linksBreadcrums = [
+    {
+      title: t('home.home'),
+      link: '/',
+      activeLink: false
+    },
+    {
+      title: t('about-page.about-us'),
+      link: '',
+      activeLink: true
+    }
+  ]
 
   return (
     <Box className='about__wrapper'>
@@ -35,32 +42,7 @@ const AboutPage = () => {
           }
         }}
       >
-        <Box role='presentation' paddingTop='20px'>
-          <Breadcrumbs aria-label='breadcrumb'>
-            <Link
-              to='/'
-              style={{
-                textDecoration: 'none',
-                color: activeLink === 'Trang chủ' ? 'var(--primary)' : 'var(--text-primary)'
-              }}
-              onClick={() => handleLinkClick('Trang chủ')}
-            >
-              <Typography variant='label2' color='var(---secondary)'>
-                {t('home.home')}
-              </Typography>
-            </Link>
-
-            <Link
-              to=''
-              style={{
-                textDecoration: 'none',
-                color: 'var(--primary)'
-              }}
-            >
-              <Typography variant='button2'>{t('about-page.about-us')}</Typography>
-            </Link>
-          </Breadcrumbs>
-        </Box>
+        {<BreadscrumbCustom data={linksBreadcrums} />}
         <Stack direction='row' gap='20px' margin='30px 0'>
           <Stack flex='0 0 60%' direction='column' maxWidth={isTablet ? '60%' : '100%'} gap='40px'>
             <Stack gap='20px'>
@@ -69,11 +51,7 @@ const AboutPage = () => {
               </Typography>
               <Typography variant='body3'>{t('about-page.des-1')}</Typography>
             </Stack>
-            <Box
-              display={isTablet ? 'none' : 'block'}
-              component='img'
-              src='https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FGroup%2056260.d46edcda.png&w=1920&q=75'
-            />
+            <Box display={isTablet ? 'none' : 'block'} component='img' src='https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FGroup%2056260.d46edcda.png&w=1920&q=75' />
             <Stack direction='row' flexWrap='wrap' rowGap='20px'>
               <Box maxWidth={isTablet ? '50%' : '100%'} flex={isTablet ? '0 0 50%' : '0 0 100%'} padding='0 10px'>
                 <Box
@@ -176,16 +154,8 @@ const AboutPage = () => {
               </Box>
             </Stack>
           </Stack>
-          <Stack
-            flex='0 0 40%'
-            direction='column'
-            maxWidth={isTablet ? '40%' : '100%'}
-            display={isTablet ? 'flex' : 'none'}
-          >
-            <Box
-              component='img'
-              src='https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FGroup%2056260.d46edcda.png&w=1920&q=75'
-            />
+          <Stack flex='0 0 40%' direction='column' maxWidth={isTablet ? '40%' : '100%'} display={isTablet ? 'flex' : 'none'}>
+            <Box component='img' src='https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FGroup%2056260.d46edcda.png&w=1920&q=75' />
           </Stack>
         </Stack>
         <Stack

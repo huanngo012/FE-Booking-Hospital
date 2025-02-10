@@ -9,6 +9,7 @@ import { theme } from '~/themes/Theme'
 import LanguagePopUp from './LanguagePopUp'
 import ProfilePopup from './ProfilePopup'
 import NavbarPopUp from './NavbarPopUp'
+import { useSelector } from 'react-redux'
 
 const { FacebookIcon, TiktokIcon, YoutubeIcon, PhoneIcon, UserIcon } = images
 const linkLogo = 'https://medpro.vn/_next/image?url=https%3A%2F%2Fbo-api.medpro.com.vn%2Fstatic%2Fimages%2Fmedpro%2Fweb%2Fheader_logo.svg&w=1920&q=75'
@@ -23,7 +24,7 @@ const Header = () => {
   const displayDesktop = isDesktop ? 'flex' : 'none'
   const displayMobile = isDesktop ? 'none' : 'flex'
 
-  const isLoggedIn = false
+  const { isLoggedIn } = useSelector((state: any) => state.auth)
 
   let oldScrollY = 0
 

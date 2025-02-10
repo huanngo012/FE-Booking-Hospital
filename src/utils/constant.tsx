@@ -1,3 +1,10 @@
+import { RiLockPasswordLine } from 'react-icons/ri'
+import { FaUserCircle } from 'react-icons/fa'
+import { IoMdCalendar } from 'react-icons/io'
+import { images } from '~/assets'
+import TabProfile from '~/pages/user/TabProfile'
+const { UserRecord } = images
+
 export const encryptPasswordKey = '73XKXeYyitybbeEmufSzBOD5OZMDcFCo'
 export const generateUniqueId = () => {
   return '_' + Math.random().toString(36).substr(2, 9)
@@ -20,7 +27,7 @@ export const paddingScreen = {
   padding: {
     oversize: '0 160px',
     desktop: '0 64px',
-    mobile: '0 32px'
+    mobile: '10px 32px'
   }
 }
 
@@ -523,5 +530,32 @@ export const dosages = [
   {
     _id: 'e',
     name: 'Tối'
+  }
+]
+
+export const tabsUser = [
+  {
+    icon: <FaUserCircle size={24} />,
+    text: 'Thông tin cá nhân',
+    component: <TabProfile />,
+    path: `profile`
+  },
+  {
+    icon: <RiLockPasswordLine size={24} />,
+    text: 'Đổi mật khẩu',
+    // component: <TabPassword />,
+    path: `password`
+  },
+  {
+    icon: <UserRecord width='24px' height='24px' />,
+    text: 'Hồ sơ bệnh nhân',
+    // component: <TabRecord />,
+    path: `record`
+  },
+  {
+    icon: <IoMdCalendar size={24} />,
+    text: 'Lịch khám',
+    // component: <TabBooking />,
+    path: `booking`
   }
 ]

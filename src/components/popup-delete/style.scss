@@ -3,64 +3,60 @@
   flex-direction: column;
   padding: 24px;
   gap: 32px;
-}
-
-.popup-box-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 16px;
-}
-
-.popup-box-inner {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.popup-box-content {
-  width: 236px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 4px;
-}
-
-.popup-action {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-}
-
-.popup-cancel-button {
-  background-color: var(--grey-primary-80);
-  p {
-    color: var(--text-primary);
-    background-color: var(--text-secondar);
+  .popup-box-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    .popup-box-inner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      .popup-box-content {
+        width: 236px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 4px;
+      }
+    }
+    .button-close {
+      cursor: pointer;
+    }
   }
-}
+  .popup-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    .popup-cancel-button {
+      background-color: var(--grey-100);
+      p {
+        color: var(--text-primary);
+        background-color: var(--text-secondar);
+      }
+      &:hover {
+        background-color: var(--grey-100);
+        color: var(--white);
+      }
+    }
+    .popup-confirm-button,
+    .popup-cancel-button {
+      display: flex;
+      flex: 1;
+      height: 40px;
+      padding: 0px 16px;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      align-self: stretch;
+      border-radius: 6px;
 
-.popup-cancel-button:hover {
-  background-color: var(--grey-primary-100);
-  color: var(--white);
-}
+      color: var(--white);
+    }
 
-.popup-confirm-button,
-.popup-cancel-button {
-  display: flex;
-  flex: 1;
-  height: 40px;
-  padding: 0px 16px;
-  justify-content: center;
-  align-items: center;
-  gap: 6px;
-  align-self: stretch;
-  border-radius: 6px;
-
-  color: var(--white);
-}
-
-.popup-confirm-button {
-  background-color: var(--primary);
+    .popup-confirm-button {
+      background-color: var(--primary);
+    }
+  }
 }

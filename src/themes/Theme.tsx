@@ -68,7 +68,7 @@ export const theme = createTheme({
           boxShadow: 'none',
 
           '&.Mui-disabled': {
-            background: 'var(--grey-neutral-80)',
+            background: 'var(--grey-100)',
             color: 'var(--text-disable)'
           },
           ...(ownerState.variant === 'contained' &&
@@ -97,7 +97,7 @@ export const theme = createTheme({
               color: 'var(--text-primary) ',
               backgroundColor: 'var(--blue-50)',
               '&:hover': {
-                backgroundColor: 'var(--grey-primary-80)',
+                backgroundColor: 'var(--grey-100)',
                 boxShadow: 'none'
               },
               '&:active': {
@@ -171,16 +171,16 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           padding: 0,
-          color: 'var(--grey-neutral-100)',
+          color: 'var(--grey-300)',
           '& .MuiButtonBase-root': {
-            color: 'var(--grey-neutral-100)'
+            color: 'var(--grey-300)'
           },
 
           '&.Mui-checked, &.MuiCheckbox-indeterminate': {
             color: 'var(--primary)'
           },
           '&.Mui-disabled': {
-            color: 'var(--grey-neutral-100)'
+            color: 'var(--grey-300)'
           }
         }
       }
@@ -188,13 +188,13 @@ export const theme = createTheme({
     MuiRadio: {
       styleOverrides: {
         root: {
-          color: 'var(--grey-neutral-100)',
+          color: 'var(--grey-300)',
 
           '&.Mui-checked, &.MuiCheckbox-indeterminate': {
             color: 'var(--primary)'
           },
           '&.Mui-disabled': {
-            color: 'var(--grey-neutral-100)'
+            color: 'var(--grey-300)'
           }
         }
       }
@@ -245,7 +245,7 @@ export const theme = createTheme({
             borderColor: 'var(--border-color)'
           },
           '&:hover .MuiOutlinedInput-notchedOutline': {
-            borderColor: 'var(--grey-neutral-300)'
+            borderColor: 'var(--grey-300)'
           },
 
           '&.MuiInputBase-root': {
@@ -332,7 +332,7 @@ export const theme = createTheme({
 
             //hover
             '&:hover fieldset': {
-              borderColor: 'var(--grey-neutral-300)'
+              borderColor: 'var(--grey-300)'
             },
             //focus
             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
@@ -344,12 +344,12 @@ export const theme = createTheme({
               borderColor: 'var(--alert) '
             },
             '&.Mui-disabled fieldset': {
-              borderColor: 'var(--grey-neutral-200)',
+              borderColor: 'var(--grey-200)',
               color: 'var(--text-disable)'
             }
           },
           '& .MuiInputBase-root.Mui-disabled': {
-            backgroundColor: 'var(--grey-neutral-80)',
+            backgroundColor: 'var(--grey-100)',
             color: 'var(--text-disable)'
           }
         })
@@ -371,15 +371,7 @@ export const theme = createTheme({
         })
       }
     },
-    MuiSnackbar: {
-      styleOverrides: {
-        root: () => ({
-          '&.MuiSnackbar-anchorOriginTopRight': {
-            left: 'auto'
-          }
-        })
-      }
-    },
+
     MuiAlert: {
       styleOverrides: {
         root: () => ({
@@ -387,8 +379,8 @@ export const theme = createTheme({
           borderRadius: '8px',
 
           '&.MuiAlert-root': {
-            width: '450px',
-            backgroundColor: 'var(--grey-primary-900)',
+            width: 'fit-content',
+            backgroundColor: 'var(--grey-900)',
             padding: '24px',
             '& .MuiAlert-icon': {
               padding: '0 16px 0 0',
