@@ -143,7 +143,7 @@ const PopupCreateComment = ({ payload, setPayload }: { payload?: any; setPayload
 export default PopupCreateComment
 
 const Textarea = styled(BaseTextareaAutosize)(
-  ({ theme }) => `
+  ({}) => `
     box-sizing: border-box;
     width: 100%;
      font-family: Inter;

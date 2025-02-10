@@ -34,16 +34,13 @@ export const ratingClinic = createAsyncThunk('clinic/ratingClinic', async (data:
   }
   return response.message
 })
-export const deleteRatingClinic = createAsyncThunk(
-  'clinic/deleteRatingClinic',
-  async (id: string, { rejectWithValue }) => {
-    const response: any = await apis.apiDeleteRatingClinic(id)
-    if (!response.success) {
-      return rejectWithValue(response.message)
-    }
-    return response.message
+export const deleteRatingClinic = createAsyncThunk('clinic/deleteRatingClinic', async (id: string, { rejectWithValue }) => {
+  const response: any = await apis.apiDeleteRatingClinic(id)
+  if (!response.success) {
+    return rejectWithValue(response.message)
   }
-)
+  return response.message
+})
 
 export const clinicSlice = createSlice({
   name: 'clinic',
@@ -78,7 +75,7 @@ export const clinicSlice = createSlice({
       state.totalClinic = action.payload.counts
       state.loadingClinic = false
     })
-    builder.addCase(getClinicsTop.rejected, (state, action) => {
+    builder.addCase(getClinicsTop.rejected, (state, _action) => {
       state.clinicsTop = []
       state.loadingClinic = false
     })

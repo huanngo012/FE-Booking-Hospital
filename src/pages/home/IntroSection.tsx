@@ -234,7 +234,7 @@ const IntroSection = () => {
                           </Container>
                         )
                       ) : (
-                        [...Array(3)].map((item, index: number) => <CustomSkeleton key={index} variant='card-search' />)
+                        [...Array(3)].map((_item, index: number) => <CustomSkeleton key={index} variant='card-search' />)
                       )}
                     </Stack>
                     <Stack direction='column' gap={0.5}>

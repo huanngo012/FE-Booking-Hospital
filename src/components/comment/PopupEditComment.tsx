@@ -130,7 +130,7 @@ const PopupEditComment = ({ data }: { data?: any }) => {
 export default PopupEditComment
 
 const Textarea = styled(BaseTextareaAutosize)(
-  ({ theme }) => `
+  ({}) => `
     box-sizing: border-box;
     width: 100%;
      font-family: Inter;

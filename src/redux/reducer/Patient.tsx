@@ -23,16 +23,13 @@ export const addPatient = createAsyncThunk('patient/addPatient', async (data: an
   }
   return response.data
 })
-export const updatePatient = createAsyncThunk(
-  'patient/updatePatient',
-  async ({ id, data }: { id: string; data: any }, { rejectWithValue }) => {
-    const response: any = await apis.apiUpdatePatient(id, data)
-    if (!response.success) {
-      return rejectWithValue(response.data)
-    }
-    return response.data
+export const updatePatient = createAsyncThunk('patient/updatePatient', async ({ id, data }: { id: string; data: any }, { rejectWithValue }) => {
+  const response: any = await apis.apiUpdatePatient(id, data)
+  if (!response.success) {
+    return rejectWithValue(response.data)
   }
-)
+  return response.data
+})
 
 export const deletePatient = createAsyncThunk('doctor/deletePatient', async (id: string, { rejectWithValue }) => {
   const response: any = await apis.apiDeletePatient(id)
@@ -100,7 +97,7 @@ export const patientSlice = createSlice({
       state.successAction = null
       state.errorAction = null
     })
-    builder.addCase(deletePatient.fulfilled, (state, action) => {
+    builder.addCase(deletePatient.fulfilled, (state, _action) => {
       state.loadingPatient = false
       state.successAction = 'Xóa hồ sơ thành công'
     })

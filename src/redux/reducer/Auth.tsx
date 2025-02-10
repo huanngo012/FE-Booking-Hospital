@@ -84,11 +84,11 @@ export const authSlice = createSlice({
     builder.addCase(getCurrent.pending, (state) => {
       state.loading = true
     })
-    builder.addCase(getCurrent.fulfilled, (state, action) => {
+    builder.addCase(getCurrent.fulfilled, (state, _action) => {
       state.isLoggedIn = true
       state.loading = false
     })
-    builder.addCase(getCurrent.rejected, (state, action) => {
+    builder.addCase(getCurrent.rejected, (state, _action) => {
       state.current = null
       state.isLoggedIn = false
       state.token = null
@@ -100,7 +100,7 @@ export const authSlice = createSlice({
       state.successAction = null
       state.errorAction = null
     })
-    builder.addCase(updateUser.fulfilled, (state, action) => {
+    builder.addCase(updateUser.fulfilled, (state, _action) => {
       state.loading = false
       state.successAction = 'Cập nhật thông tin người dùng thành công'
     })

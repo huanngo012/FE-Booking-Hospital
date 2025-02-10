@@ -3,10 +3,7 @@ import { Badge, Box, Button, ClickAwayListener, Divider, MenuItem, MenuList, Pap
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { FiMenu } from 'react-icons/fi'
-import { useDispatch, useSelector } from 'react-redux'
-
 import { paths } from '~/utils/constant'
-import { AppDispatch } from '~/redux/store'
 import { theme } from '~/themes/Theme'
 
 interface NavbarPopUpProps {
@@ -21,7 +18,6 @@ const imageCHPlay = 'https://medpro.vn/_next/image?url=https%3A%2F%2Fbo-api.medp
 const NavbarPopUp = ({ tabs, handleNav, activeLink }: NavbarPopUpProps) => {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const dispatch = useDispatch<AppDispatch>()
   const isLoggedIn = false
 
   const isTablet = useMediaQuery(theme.breakpoints.up('tablet'))

@@ -18,7 +18,7 @@ const TabBooking = () => {
   const dispatch = useDispatch<AppDispatch>()
   const { displayNotification } = useNotification()
 
-  const { bookings, successAction, errorAction, loadingBooking } = useSelector((state: any) => state.booking)
+  const { bookings, successAction, errorAction } = useSelector((state: any) => state.booking)
   const { patients } = useSelector((state: any) => state.patient)
   const pageSizeDefault = 10
   const [pageSize, setPageSize] = useState(pageSizeDefault)

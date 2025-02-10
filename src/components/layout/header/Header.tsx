@@ -73,7 +73,7 @@ const Header = () => {
     setTabs('/')
   }, [location?.pathname])
 
-  const handleChangeTab = (event: React.SyntheticEvent, value: string) => {
+  const handleChangeTab = (_event: React.SyntheticEvent, value: string) => {
     setTabs(value)
     navigate(value)
   }
